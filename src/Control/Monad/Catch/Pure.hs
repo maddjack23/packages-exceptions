@@ -55,8 +55,14 @@ import Prelude hiding (catch, foldr)
 import Control.Applicative
 import Control.Monad.Catch
 import qualified Control.Monad.Fail as Fail
-import Control.Monad.Reader as Reader
-import Control.Monad.RWS
+import Control.Monad.Fix (MonadFix(..))
+import Control.Monad.IO.Class (MonadIO(..))
+import Control.Monad (MonadPlus(..), ap, liftM)
+import Control.Monad.Reader (MonadReader(..))
+import Control.Monad.RWS (MonadRWS)
+import Control.Monad.State (MonadState(..))
+import Control.Monad.Trans.Class (MonadTrans(..))
+import Control.Monad.Writer (MonadWriter(..))
 #if __GLASGOW_HASKELL__ < 710
 import Data.Foldable
 #endif
