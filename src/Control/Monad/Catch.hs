@@ -95,7 +95,9 @@ import Control.Monad.Trans.Cont (ContT)
 import Control.Monad.Trans.Identity
 import Control.Monad.Trans.Reader (ReaderT(..), runReaderT)
 
+#ifdef TEMPLATE_HASKELL_QUOTES
 import Language.Haskell.TH.Syntax (Q)
+#endif
 
 #if MIN_VERSION_base(4,4,0)
 import Control.Monad.ST.Unsafe (unsafeIOToST)
@@ -328,8 +330,11 @@ instance MonadThrow [] where
   throwM _ = []
 instance MonadThrow Maybe where
   throwM _ = Nothing
+
+#ifdef TEMPLATE_HASKELL_QUOTES
 instance MonadThrow Q where
   throwM = fail . show
+#endif
 
 instance MonadThrow IO where
   throwM = ControlException.throwIO
